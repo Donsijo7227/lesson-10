@@ -43,7 +43,11 @@ const createScene = async function() {
     box.position.z = 0.5;
 
     // STEP 7: Let's create another native mesh object for interactive purposes
-    
+    const can = BABYLON.MeshBuilder.CreateCylinder("can", {diameter:0.1,height:0.3,tesselation:10}, scene);
+    const canMat = new BABYLON.StandardMaterial("canMat");
+    canMat.diffuseColor = new BABYLON.Color3(1, 0, 0.6);
+    can.material = canMat;
+    can.position.x = 0.5;
 
     /* SOUNDS
     ---------------------------------------------------------------------------------------------------- */
@@ -121,7 +125,7 @@ const createScene = async function() {
     }
 
     // STEP 8: Make the can grabbable and moveable (awesome)! 
-    
+    can.bakeCurrentTransformIntoVertices().addBehaviour(new BABYLON.sixDofDragBehaviour());
 
 
     // Return the scene
