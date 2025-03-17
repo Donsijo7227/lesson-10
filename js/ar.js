@@ -40,10 +40,10 @@ const createScene = async function() {
     box.material = boxMat;
     // The initial position of the box is 0, 0, 0 so with the referenceSpaceType: "unbounded" it will be located on the viewer's head, which is the origin point of the scene - reposition the box as you'd like
     box.position.y = 0.5;
-    box.position.z = 0.5;
+    box.position.z = 1.5;
 
     // STEP 7: Let's create another native mesh object for interactive purposes
-    const can = BABYLON.MeshBuilder.CreateCylinder("can", {diameter:0.1,height:0.3,tesselation:10}, scene);
+    const can = BABYLON.MeshBuilder.CreateCylinder("can", {diameter: 0.1, height: 0.3, tessellation: 10}, scene);
     const canMat = new BABYLON.StandardMaterial("canMat");
     canMat.diffuseColor = new BABYLON.Color3(1, 0, 0.6);
     can.material = canMat;
@@ -64,7 +64,7 @@ const createScene = async function() {
         uiOptions: {
             sessionMode: "immersive-ar",
             // STEP 1: Set the referenceSpaceType to "unbounded" - since the headset is in passthrough mode with AR, let the vistor go anywhere they like within their physical space
-            referenceSpaceType: "local-floor" // viewer, local, local-floor, bounded-floor, or unbounded (https://developer.mozilla.org/en-US/docs/Web/API/XRReferenceSpace and https://gist.github.com/lempa/64b3a89a19cbec980ade709be35d7cbc#file-webxr-reference-space-types-csv)
+            referenceSpaceType: "local-floor" //  viewer, local, local-floor, bounded-floor, or unbounded (https://developer.mozilla.org/en-US/docs/Web/API/XRReferenceSpace and https://gist.github.com/lempa/64b3a89a19cbec980ade709be35d7cbc#file-webxr-reference-space-types-csv)
 
         },
         // Enable optional features - either all of them with true (boolean), or as an array
@@ -125,7 +125,8 @@ const createScene = async function() {
     }
 
     // STEP 8: Make the can grabbable and moveable (awesome)! 
-    can.bakeCurrentTransformIntoVertices().addBehaviour(new BABYLON.sixDofDragBehaviour());
+    can.bakeCurrentTransformIntoVertices().addBehavior(new BABYLON.SixDofDragBehavior());
+
 
     // Return the scene
     return scene;
