@@ -40,7 +40,7 @@ const createScene = async function() {
     box.material = boxMat;
     // The initial position of the box is 0, 0, 0 so with the referenceSpaceType: "unbounded" it will be located on the viewer's head, which is the origin point of the scene - reposition the box as you'd like
     box.position.y = 0.5;
-    box.position.z = 1.5;
+    box.position.z = 0.5;
 
     // STEP 7: Let's create another native mesh object for interactive purposes
     
@@ -60,7 +60,7 @@ const createScene = async function() {
         uiOptions: {
             sessionMode: "immersive-ar",
             // STEP 1: Set the referenceSpaceType to "unbounded" - since the headset is in passthrough mode with AR, let the vistor go anywhere they like within their physical space
-            referenceSpaceType: "local" // viewer, local, local-floor, bounded-floor, or unbounded (https://developer.mozilla.org/en-US/docs/Web/API/XRReferenceSpace and https://gist.github.com/lempa/64b3a89a19cbec980ade709be35d7cbc#file-webxr-reference-space-types-csv)
+            referenceSpaceType: "local-floor" // viewer, local, local-floor, bounded-floor, or unbounded (https://developer.mozilla.org/en-US/docs/Web/API/XRReferenceSpace and https://gist.github.com/lempa/64b3a89a19cbec980ade709be35d7cbc#file-webxr-reference-space-types-csv)
 
         },
         // Enable optional features - either all of them with true (boolean), or as an array
@@ -76,7 +76,7 @@ const createScene = async function() {
     // STEP 3a: Set up a "mouseover" effect - register a new action with the registerAction() method
     box.actionManager.registerAction(
         // STEP 3b: Set up the action to animate the effect with InterpolateValueAction
-        new BABYLON.interpolateValueAction(
+        new BABYLON.InterpolateValueAction(
             // STEP 3c: Add a hover action with OnPointerOverTrigger, to scale the box 1.2 times its size over a quarter of a second
             BABYLON.ActionManager.OnPointerOverTrigger,
             box,
