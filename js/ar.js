@@ -74,7 +74,7 @@ const createScene = async function() {
     box.actionManager = new BABYLON.ActionManager(scene);
 
     // STEP 3a: Set up a "mouseover" effect - register a new action with the registerAction() method
-    box.actionManager.registerAction[
+    box.actionManager.registerAction(
         // STEP 3b: Set up the action to animate the effect with InterpolateValueAction
         new BABYLON.interpolateValueAction(
             // STEP 3c: Add a hover action with OnPointerOverTrigger, to scale the box 1.2 times its size over a quarter of a second
@@ -84,7 +84,7 @@ const createScene = async function() {
             new BABYLON.Vector3(1.2, 1.2, 1.2),
             250
         )
-    ];
+    );
     // STEP 4a: Set up a "mouseout" effect - register another action with the registerAction() method
     
         // STEP 4b: Set up the action to animate the effect once again with InterpolateValueAction
